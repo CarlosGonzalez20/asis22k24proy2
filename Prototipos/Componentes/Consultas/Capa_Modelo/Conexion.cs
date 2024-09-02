@@ -12,7 +12,7 @@ namespace Capa_ModeloConsultas
 
         public OdbcConnection connection()
         {
-            OdbcConnection conn = new OdbcConnection("Dsn=PRUEBA-GIT");
+            OdbcConnection conn = new OdbcConnection("Dsn=PRUEBA-GIT-");
             try
             {
                 conn.Open();

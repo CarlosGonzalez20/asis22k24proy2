@@ -19,6 +19,7 @@ namespace Capa_Vista_Consulta
         string tablabusqueda;
         private string[] datos;
         private string[] tipos;
+        private string consultaSeleccionada;
         public ConsultaInteligente()
         {
             InitializeComponent();
@@ -28,14 +29,18 @@ namespace Capa_Vista_Consulta
             csControlador.CargarTablas(cboEditarTabla, BD);
             csControlador.CargarTablas(cboTabla, BD);
             cboTabla.SelectedIndexChanged += new EventHandler(cboTabla_SelectedIndexChanged);
+            cboEditarTabla.SelectedIndexChanged += new EventHandler(cboTablaEditar_SelectedIndexChanged);
             gbCondiciones.Enabled = false;
             gbOrdenar.Enabled = false;
             gbListadoConsultas.Enabled = false;
             gbEditarLogica.Enabled = false;
             gbEditarOrden.Enabled = false;
+            csControlador.obtenerNombresConsultas(txtEditarNombreConsulta);
+            txtEditarNombreConsulta.SelectedIndexChanged += new EventHandler(cboConsultas_SelectedIndexChanged);
+
         }
         string consulta = "";
-        string tabla = "tbl_consultasInteligentes";
+        string tabla = "tbl_consultaInteligente";
         private void cboTabla_SelectedIndexChanged(object sender, EventArgs e)
         {
             // Verifica si se ha seleccionado una tabla
@@ -155,8 +160,7 @@ namespace Capa_Vista_Consulta
 
         private void btnAgregarComparacion_Click(object sender, EventArgs e)
         {
-            // Procesar los datos en la tabla correspondiente
-            csControlador.ingresarQuery(tipos, datos, tabla);
+            
         }
 
         private void btnCancelarSimple_Click(object sender, EventArgs e)
@@ -208,5 +212,132 @@ namespace Capa_Vista_Consulta
             chbOrdenAscendente.Checked = false;
             chbOrdenDescendente.Checked = false;
         }
+
+        private void btnCrear_Click(object sender, EventArgs e)
+        {
+
+            // Procesar los datos en la tabla correspondiente
+            csControlador.ingresarQuery(tipos, datos, tabla);
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //SALVADOR MARTÍNEZ // PESTAÑA DE EDITAR
+
+        private void cboTablaEditar_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Verifica si se ha seleccionado una tabla
+            if (!string.IsNullOrEmpty(cboEditarTabla.Text))
+            {
+                // Llama al método para llenar el segundo ComboBox con las columnas de la tabla seleccionada
+                csControlador.obtenerColumbasPorTabla(cboEditarCampo, cboEditarTabla.Text);
+            }
+        }
+
+        private void btnEditarSimple_Click(object sender, EventArgs e)
+        {
+            //boton agregar, consulta simple
+            // Datos que se van a procesar
+            datos = new string[] { txtEditarNombreConsulta.Text, "0", cboEditarTabla.Text, chbTodosCampos.Text, txtQueryEditadoFinal.Text, "1" };
+
+            // Inicializamos la variable para los campos que se mostrarán en el query
+            string camposSeleccionados;
+
+            // Verificamos si el CheckBox de 'Todos los campos' está marcado
+            if (chbEditarTodosCampos.Checked)
+            {
+                // Si está marcado, mostramos "Todos los campos"
+                camposSeleccionados = "*";
+            }
+            else
+            {
+                // Si no está marcado, verificamos si hay un campo seleccionado en el ComboBox
+                if (!string.IsNullOrEmpty(cboEditarCampo.Text))
+                {
+                    // Si hay un campo seleccionado, lo mostramos
+                    camposSeleccionados = cboEditarCampo.Text;
+                }
+                else
+                {
+                    // Si no hay campo seleccionado, dejamos un valor vacío o un mensaje de advertencia
+                    MessageBox.Show("Debe seleccionar o un campo o todos", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+            }
+
+            if (string.IsNullOrEmpty(txtQueryEditado.Text))
+            {
+                // Si txtQuery está vacío, asignamos el valor inicial
+                txtQueryEditado.Text = camposSeleccionados + " + " + txtEditarAlias.Text + " + ";
+                datos[4] = txtQueryEditado.Text;
+            }
+            else
+            {
+                // Si txtQuery ya tiene texto, agregamos el nuevo valor sin repetir el nombre de la consulta y el tipo
+                txtQueryEditado.Text += Environment.NewLine + camposSeleccionados + " + " + txtEditarAlias.Text + " + ";
+                datos[4] += txtQueryEditado.Text;
+            }
+
+            // Procesar los datos en la tabla correspondiente
+            csControlador.ingresar(tipos, datos, "tbl_consultaInteligente");
+        }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            // Asegúrate de que consultaSeleccionada tiene un valor válido
+            if (string.IsNullOrEmpty(consultaSeleccionada))
+            {
+                MessageBox.Show("Debe seleccionar una consulta para editar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Actualiza datos con la consulta seleccionada
+            datos[0] = consultaSeleccionada; // Suponiendo que datos[0] es el nombre de la consulta
+
+            // Procesar los datos en la tabla correspondiente
+            csControlador.actualizarQuery(tipos, datos, tabla);
+
+        }
+
+        private void cboConsultas_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            /// Captura el nombre de la consulta seleccionada desde el ComboBox
+            consultaSeleccionada = txtEditarNombreConsulta.SelectedItem.ToString();
+
+        }
+
+
+
     }
 }
+
+////////// FIN /////////

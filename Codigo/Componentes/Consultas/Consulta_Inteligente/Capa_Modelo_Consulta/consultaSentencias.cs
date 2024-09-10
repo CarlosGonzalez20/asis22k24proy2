@@ -84,12 +84,48 @@ namespace Capa_Modelo_Consulta
          Fin de la participación de Carlos González
          */
 
+
+
+
+        //SALVADOR MARTINEZ// PESTAÑA EDITAR
+
+        public List<string> ObtenerNombresConsultas()
+        {
+            List<string> nombresConsultas = new List<string>();
+
+            try
+            {
+                // Consulta para obtener solo los nombres de las consultas
+                string query = "SELECT nombre_consulta FROM tbl_consultaInteligente;";
+
+                // Ejecutamos el comando con la conexión activa
+                using (OdbcCommand cmd = new OdbcCommand(query, this.conn.connection()))
+                {
+                    OdbcDataReader reader = cmd.ExecuteReader();
+
+                    // Añadimos los nombres de consulta a la lista
+                    while (reader.Read())
+                    {
+                        string nombreConsulta = reader.GetString(0);
+                        nombresConsultas.Add(nombreConsulta);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error al obtener nombres de consultas: " + e.Message);
+            }
+
+            return nombresConsultas;
+        }
+
         //modificar
-        public void actualizar(string dato, string condicion, string tabla)
+        public void actualizar(string setClause, string tabla, string condicion)
         {
             try
             {
-                string sql = "Update " + tabla + " " + dato + " where " + condicion;
+                // Construir la consulta UPDATE con la cláusula SET y la condición WHERE
+                string sql = $"UPDATE {tabla} SET {setClause} WHERE {condicion}";
                 OdbcCommand cmd = new OdbcCommand(sql, con.connection());
                 cmd.ExecuteNonQuery();
             }
@@ -98,8 +134,10 @@ namespace Capa_Modelo_Consulta
                 Console.WriteLine(e.Message);
             }
 
+            //////////////// FIN SALVADOR MARTÍNEZ ////////////////
+        
 
-        }
+    }
         public void insertarconsulta(string cadena)
         {
             try

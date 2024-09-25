@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CapaDatos">
+      <HintPath>..\..\Seguridad\CapaDatos\bin\Debug\CapaDatos.dll</HintPath>
+    </Reference>
     <Reference Include="Capa_Controlador_Navegador">
       <HintPath>..\Capa_Controlador_Navegador\bin\Debug\Capa_Controlador_Navegador.dll</HintPath>
     </Reference>

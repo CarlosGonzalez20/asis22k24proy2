@@ -21,6 +21,21 @@ namespace CapaDiseno
         {
             InitializeComponent();
             this.idUsuario = idUsuario;
+            string[] alias = { "ID", "ID factura", "Fecha Pago", "Monto", "Estado" };
+            navegador1.asignarAlias(alias);
+            navegador1.asignarSalida(this);
+            navegador1.asignarColorFondo(Color.CadetBlue);
+            navegador1.asignarColorFuente(Color.Black);
+            navegador1.asignarTabla("pagos");
+            navegador1.asignarComboConTabla("factura", "Pk_id_factura", "Pk_id_factura", 1);
+            navegador1.asignarforaneas("pagos", "factura", "Pk_id_factura", "fk_id_factura", "Pk_id_factura");
+
+            List<string> tablas = new List<string> { "detallefactura", "factura" };
+            navegador1.asignarTablas(tablas);
+            navegador1.ObtenerIdAplicacion("1000");
+            navegador1.ObtenerIdUsuario(idUsuario);
+            navegador1.asignarAyuda("2");
+            navegador1.asignarNombreForm("FACTURAS");
         }
 
         private void ShowNewForm(object sender, EventArgs e)
@@ -417,6 +432,11 @@ namespace CapaDiseno
                 MessageBox.Show("Error al buscar el archivo: " + ex.Message);
             }
             return null; // No se encontró el archivo
+        }
+
+        private void navegador1_Load(object sender, EventArgs e)
+        {
+
         }
 
         //****************************** Fin KATERYN DE LEON y Gabriela Suc **********************************************

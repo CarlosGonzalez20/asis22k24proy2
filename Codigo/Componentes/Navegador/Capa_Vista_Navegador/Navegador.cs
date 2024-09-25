@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Capa_Controlador_Navegador;
-using Capa_Datos_Navegador;
+//using Capa_Datos_Navegador;
 using Capa_Controlador_Reporteria;
 using Capa_Vista_Reporteria;
 using Capa_Vista_Consulta;
@@ -2443,29 +2443,10 @@ namespace Capa_Vista_Navegador
         {
             // Se obtiene el ID del usuario.
             string idUsuario1 = logic.ObtenerIdUsuario(idUsuario);
+            //DLL DE CONSULTAS
 
-            // Se instancia el objeto para manejar las consultas.
-            sentencia sen = new sentencia();
-            sentencia con = new sentencia();
-
-            // Se consultan los permisos del usuario para cada operación.
-            bool per1 = con.consultarPermisos(idUsuario1, idAplicacion, 1);
-            bool per2 = con.consultarPermisos(idUsuario1, idAplicacion, 2);
-            bool per3 = con.consultarPermisos(idUsuario1, idAplicacion, 3);
-            bool per4 = con.consultarPermisos(idUsuario1, idAplicacion, 4);
-            bool per5 = con.consultarPermisos(idUsuario1, idAplicacion, 5);
-
-            // Si el usuario tiene todos los permisos, se muestra la consulta inteligente; de lo contrario, se muestra la consulta simple.
-            if (per1 == true && per2 == true && per3 == true && per4 == true && per5 == true)
-            {
-                ConsultaInteligente nuevo = new ConsultaInteligente(tabla);
-                nuevo.Show(); // Muestra el formulario de consulta inteligente.
-            }
-            else
-            {
-                ConsultaSimple nueva = new ConsultaSimple(tabla);
-                nueva.Show(); // Muestra el formulario de consulta simple.
-            }
+            ConsultaSimple nueva = new ConsultaSimple(tabla);
+            nueva.Show();
 
             // Habilita o deshabilita botones según los permisos del usuario.
             botonesYPermisosSinMensaje();

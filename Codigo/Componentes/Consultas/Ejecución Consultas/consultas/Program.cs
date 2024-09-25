@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Capa_Vista_Consulta;
+using CapaDiseno;
 
 namespace consultas
 {
@@ -17,7 +18,8 @@ namespace consultas
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ConsultaInteligente("tbl_consultaInteligente"));
+            //Application.Run(new ConsultaInteligente("tbl_consultaInteligente"));
+            Application.Run(new frm_login());
         }
     }
 }

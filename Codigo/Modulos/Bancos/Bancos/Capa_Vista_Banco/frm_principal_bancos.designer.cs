@@ -239,7 +239,7 @@
             this.btnMenuProcesosOpcion1.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
             this.btnMenuProcesosOpcion1.Size = new System.Drawing.Size(181, 37);
             this.btnMenuProcesosOpcion1.TabIndex = 0;
-            this.btnMenuProcesosOpcion1.Text = "Opcion3";
+            this.btnMenuProcesosOpcion1.Text = "Movimientos";
             this.btnMenuProcesosOpcion1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnMenuProcesosOpcion1.UseVisualStyleBackColor = true;
             this.btnMenuProcesosOpcion1.Click += new System.EventHandler(this.btnMenuProcesosOpcion1_Click);

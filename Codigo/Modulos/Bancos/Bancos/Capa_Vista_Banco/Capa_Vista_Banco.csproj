@@ -34,8 +34,15 @@
     <Reference Include="Capa_Controlador_Banco">
       <HintPath>..\Capa_Controlador_Banco\bin\Debug\Capa_Controlador_Banco.dll</HintPath>
     </Reference>
+    <Reference Include="Capa_Vista_Banco, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Movimientos\Capa_Vista_Movimientos\bin\Debug\Capa_Vista_Banco.dll</HintPath>
+    </Reference>
     <Reference Include="Capa_Vista_Cambio">
       <HintPath>..\TipoCambio\Capa_Vista_Cambio\bin\Debug\Capa_Vista_Cambio.dll</HintPath>
+    </Reference>
+    <Reference Include="Capa_Vista_Movimientos">
+      <HintPath>..\Movimientos\Capa_Vista_Movimientos\bin\Debug\Capa_Vista_Movimientos.dll</HintPath>
     </Reference>
     <Reference Include="Capa_Vista_Navegador">
       <HintPath>..\..\..\..\Componentes\Navegador\Capa_Vista_Navegador\bin\Debug\Capa_Vista_Navegador.dll</HintPath>

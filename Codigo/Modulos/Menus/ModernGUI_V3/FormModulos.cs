@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Capa_Vista_Nominas;
 
-//using Capa_Vista_Banco;
+using Capa_Vista_Banco;
 //using Capa_Vista_Contabilidad;
 //using Capa_Vista_Produccion;
 //using Capa_Vista_Banco;
@@ -102,8 +102,8 @@ namespace Interfac_V3
 
         private void Btn_Compras_Click(object sender, EventArgs e)
         {
-            Frm_MDI_general_CompraVenta Cv = new Frm_MDI_general_CompraVenta(UsuarioSesion.GetIdUsuario());
-            Cv.Show();
+            /*Frm_MDI_general_CompraVenta Cv = new Frm_MDI_general_CompraVenta(UsuarioSesion.GetIdUsuario());
+            Cv.Show();*/
         }
 
         private void Btn_Bancos_Click(object sender, EventArgs e)
@@ -115,8 +115,8 @@ namespace Interfac_V3
 
         private void Btn_Produccion_Click(object sender, EventArgs e)
         {
-            MDI_Produccion produccion = new MDI_Produccion(UsuarioSesion.GetIdUsuario());
-            produccion.Show();
+            /*MDI_Produccion produccion = new MDI_Produccion(UsuarioSesion.GetIdUsuario());
+            produccion.Show();*/
         }
 
         private void Btn_CuentasCorrientes_Click(object sender, EventArgs e)
